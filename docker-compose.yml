@@ -19,6 +19,7 @@ services:
       - "80:80"
     volumes:
       - ./app:/var/www/app
+      - nginx-logs:/var/log/nginx
     depends_on:
       - php
     networks:
@@ -33,11 +34,14 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - db-data:/var/lib/postgresql/data
+      - db-logs:/var/log/postgresql
     networks:
       - project-network
 
 volumes:
   db-data:
+  db-logs:
+  nginx-logs:
 
 networks:
   project-network:
